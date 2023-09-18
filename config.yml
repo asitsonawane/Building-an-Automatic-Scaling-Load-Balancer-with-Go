@@ -1,0 +1,5 @@
+worker: 2     
+pool: 20        
+stats-dir: /tmp/stats  
+avg-delay: 1.0   
+failure: 10      

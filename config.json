@@ -1,0 +1,4 @@
+{
+    "workers": ["http://localhost:8080", "http://localhost:8081"],
+    "weights": [1, 2]
+}
