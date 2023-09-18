@@ -1,5 +1,8 @@
 # Automatic Scaling Load Balancer Documentation
 
+## Project architecture
+![Project architecture]([https://raw.githubusercontent.com/asitsonawane/wordpress-docker-compose/main/wordpress-docker-compose.jpg](https://github.com/asitsonawane/Building-an-Automatic-Scaling-Load-Balancer-with-Go/blob/main/Load-Balancer-with-Go.jpg))
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Load Balancer](#load-balancer)
