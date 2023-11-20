@@ -9,13 +9,15 @@ import (
 	"os/exec"
 )
 
+// Config struct represents the structure of the configuration file.
 type Config struct {
 	Workers []string `json:"workers"`
 	Weights []int    `json:"weights"`
 }
 
 func main() {
-	configFile := "C:/Users/Asit/Desktop/Coding/Newgolang/load-balancer/config.json" // Specify your configuration file
+	// Specify the path to the configuration file
+	configFile := "C:/Users/Asit/Desktop/Coding/Newgolang/load-balancer/config.json"
 
 	// Read the configuration file
 	configData, err := ioutil.ReadFile(configFile)
@@ -25,7 +27,10 @@ func main() {
 		return
 	}
 
+	// Create a Config instance to hold the configuration data
 	var config Config
+
+	// Unmarshal the JSON configuration data into the Config struct
 	if err := json.Unmarshal(configData, &config); err != nil {
 		fmt.Println("Error decoding configuration:", err)
 		log.Fatalf("Error decoding configuration: %s", err.Error())
@@ -33,6 +38,8 @@ func main() {
 	}
 
 	// Spawn Load-Balancer and workers
+
+	// Run the Load-Balancer in a goroutine
 	go func() {
 		cmd := exec.Command("go", "run", "C:/Users/Asit/Desktop/Coding/Newgolang/load-balancer/loadbalancer/loadbalancer.go")
 		cmd.Stdout = os.Stdout
@@ -42,6 +49,7 @@ func main() {
 		}
 	}()
 
+	// Run each worker in a separate goroutine
 	for i, workerURL := range config.Workers {
 		go func(i int, workerURL string) {
 			cmd := exec.Command("go", "run", "C:/Users/Asit/Desktop/Coding/Newgolang/load-balancer/worker/worker.go")
